@@ -1,0 +1,175 @@
+body {
+    margin: 0;
+    background-color: #D5C5C8;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* #container {
+    display: grid;
+    grid-template-rows: 2fr 1fr;
+} */
+
+#searchbar {
+    display: flex;
+    background-color: #4ecdc4;
+    /* height: 5vh; */
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border-bottom-style: solid;
+    border-color: #588B8B;
+    border-width: 2px;
+}
+
+#search-text {
+    border: 3px solid #b56576;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+    color: #eaac8b;
+    height: 20px;
+}
+
+#search-text:focus{
+    color: #6d597a;
+}
+
+#search-button {
+    border: 1px solid #b56576;
+    background: #b56576;
+    text-align: center;
+    color: #fff;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    height: 28px;
+}
+
+#main {
+    display: grid;
+    height: 40vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    padding: 1vw;
+    border-bottom-style: solid;
+    border-color: #976391;
+}
+
+.main-name {
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    margin: 1vh;
+}
+
+.all-main {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-temp {
+    font-family: 'Roboto', sans-serif;
+    font-size: 40px;
+}
+
+/* #results {
+    display: grid;
+    grid-template-columns: 1fr;
+
+} */
+
+.result {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    border-radius: 8px;
+    margin: 1vh;
+    box-shadow: 3px 2px 5px black;
+}
+
+.res-button {
+    border: 0.5px solid #04080F;
+    border-radius: 50%;
+    padding: 1.5vw;
+    box-shadow: 1px 0.5px 3px black;
+    text-align: center;
+}
+
+.res-button:active {
+    padding: 0.7vw;
+}
+
+.remove {
+    background-color: #9e2a2b;
+    color: white;
+}
+
+.save-to-db {
+    background-color: #C0B298;
+}
+
+.remove-from-db {
+    background-color: #32E875;
+}
+
+.update {
+    background-color: #976391;
+}
+
+
+@media only screen and (min-width: 768px) {
+    #container {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+
+    #searchbar {
+        justify-content: left;
+        padding-left: 5px;
+    }
+
+    #main {
+        height: 92vh;
+        border-right-style: solid;
+        border-color: #976391;
+    }
+
+    #results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* gap: 10px; */
+        grid-auto-rows: 100px;
+    }
+
+    .result:hover {
+        cursor: pointer;
+    }
+    
+    /* .result:active {
+        height: 9.5vh;
+        width: 95%;
+        justify-self: center; 
+    } */
+
+    .res-button {
+        padding: 0.5vw;
+    }
+
+    .res-button:hover {
+        padding: 0.7vw;
+        font-size: medium;
+    }
+    
+    .res-button:active {
+        padding: 0.5vw;
+    }
+
+    /* .result:active {
+        justify-self: center; 
+        align-self: center;
+    } */
+}

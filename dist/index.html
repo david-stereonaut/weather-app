@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="searchbar">
+        <input type="text" id="search-text" placeholder="Search a City">
+        <button onclick="handleSearch()" id="search-button"><i class="fa fa-search"></i></button>
+    </div>
+    <div id="container">
+        <div id="main"></div>
+        <div id="results"></div>
+    </div>
+    
+
+    <script id="main-template" type="text/x-handlebars-template">
+        <div style="backdrop-filter: url(filters.svg#filter) blur(5px) opacity(100%);">
+            <p class="main-name">{{name}}, {{country}}</p>
+            <div class="all-main">
+            <div class="main-temp">{{temperature}}°C</div>
+            <div class="main-feel">Feels like {{feelsLike}}°C</div>
+            <div class="main-condition">
+                <img src="{{conditionPic}}">
+                <div>{{condition}}</div>
+            </div>
+        </div>
+    </script>
+    <script id="city-template" type="text/x-handlebars-template">
+        {{#each this}}
+        <div class="result">
+            <button class="remove res-button"><i class="fas fa-minus-circle"></i></button>
+            <div class="name">{{name}}</div>
+            <div>{{temperature}}</div>
+            <button class="update res-button"><i class="fas fa-sync-alt"></i></button>
+            {{#if _id}}
+            <button class="remove-from-db res-button"><i class="fas fa-anchor"></i></button>
+            {{else}}
+            <button class="save-to-db res-button"><i class="fas fa-anchor"></i></button>
+            {{/if}}
+        </div>
+        {{/each}}
+    </script>
+    <script src="/jquery/dist/jquery.js"></script>
+    <script src="/handlebars/dist/handlebars.js"></script>
+    <script src="Renderer.js"></script>
+    <script src="CityManager.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

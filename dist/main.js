@@ -63,7 +63,9 @@ $("#results").on("click", ".update", function() {
 })
 
 /* Click on the city to render it in the main view */
-$("#results").on("click", ".result", function() {
-    const cityName = $(this).find(".name").html()
-    renderer.renderMain(model.getCityDataByName(cityName))
+$("#results").on("click", ".result", function(e) {
+    if($(e.target).is("div")) {
+        const cityName = $(this).find(".name").html()
+        renderer.renderMain(model.getCityDataByName(cityName))
+    }
 })

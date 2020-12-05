@@ -4,6 +4,9 @@ class Renderer {
     }
 
     renderMain(city) {
+        if (!city){
+            return
+        }
         $("#main").empty()
         const mainTemplate = Handlebars.compile($("#main-template").html())
         const mainHTML = mainTemplate(city)

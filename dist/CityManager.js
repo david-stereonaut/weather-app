@@ -9,14 +9,33 @@ class CityManager {
         return this.cityData
     }
 
-    async getCityData(cityName) {
-        let city = await $.get(`/city/${cityName}`)
-        if (city.message) {
-            /* error handling */
-            console.log(city.message)
+    async getCityData(cityName, lat = false, lon = false) {
+        if(lat && lon) {
+            let city = await $.get(`/city/${'irrelevant'}/${lat}/${lon}`)
+            if (city.message) { /* error handling */
+                console.log(city.message)
+            } else {
+                if (model.cityData.find(c => c.name.toLowerCase() === city.name.toLowerCase())) { /*avoiding duplications */
+                    console.log("duplication")
+                    return city
+                } else {
+                    this.cityData.unshift(city)
+                    return city
+                }
+            }
         } else {
-            this.cityData.unshift(city)
-            return city
+            let city = await $.get(`/city/${cityName}`)
+            if (city.message) { /* error handling */
+                console.log(city.message)
+            } else {
+                if (model.cityData.find(c => c.name.toLowerCase() === city.name.toLowerCase())) { /*avoiding duplications */
+                    console.log("duplication")
+                    return city
+                } else {
+                    this.cityData.unshift(city)
+                    return city
+                }
+            }
         }
     }
 

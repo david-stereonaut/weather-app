@@ -11,18 +11,22 @@ model.getDataFromDB()
             })
     })
 
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async function(position) {
+        let info = await model.getCityData('', position.coords.latitude, position.coords.longitude)
+        renderer.renderMain(info)
+        renderer.renderData(model.cityData)
+        renderer.colorUs(model.cityData)
+    });
+}
 /* Search function */
 const handleSearch = function() {
     const city = $("#search-text").val().toLowerCase()
-    if (model.cityData.find(c => c.name.toLowerCase() === city.toLowerCase())) { //avoiding duplicates
-        console.log("duplication")
-    } else {
-        model.getCityData(city).then(function(result) {
-            renderer.renderMain(result)
-            renderer.renderData(model.cityData)
-            renderer.colorUs(model.cityData)
-        })
-    }
+    model.getCityData(city).then(function(result) {
+        renderer.renderMain(result)
+        renderer.renderData(model.cityData)
+        renderer.colorUs(model.cityData)
+    })
 }
 
 /* Save to DB */

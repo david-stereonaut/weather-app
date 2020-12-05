@@ -29,8 +29,8 @@ const picsNcolors = {
 /* real stuff */
 const getCityData = async function(cityName) {
     let info = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=79aeaea703fb324557f2e301e71cf963`)
-        let capitalized = info.data.weather[0].description[0].toUpperCase()+info.data.weather[0].description.slice(1)
-        const infoSorted = {
+    let capitalized = info.data.weather[0].description[0].toUpperCase()+info.data.weather[0].description.slice(1)
+    const infoSorted = {
         name: info.data.name,
         country: info.data.sys.country,
         temperature: Math.floor(info.data.main.temp - 273.15),
@@ -42,14 +42,33 @@ const getCityData = async function(cityName) {
     }
     return (infoSorted)
 }
-router.get('/city/:cityName', async function(req, res) {
-    try {
-        let info = await getCityData(req.params.cityName)
-        res.send(info)
-    } catch(err) {
-        res.send(err)
+router.get('/city/:cityName/:lat?/:lon?', async function(req, res) {
+    if(req.params.lat && req.params.lon) {
+        try {
+            let info = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${req.params.lat}&lon=${req.params.lon}&appid=79aeaea703fb324557f2e301e71cf963`)
+            let capitalized = info.data.weather[0].description[0].toUpperCase()+info.data.weather[0].description.slice(1)
+            const infoSorted = {
+                name: info.data.name,
+                country: info.data.sys.country,
+                temperature: Math.floor(info.data.main.temp - 273.15),
+                feelsLike: Math.floor(info.data.main.feels_like - 273.15),
+                mainPic: picsNcolors[info.data.weather[0].main][0],
+                color: picsNcolors[info.data.weather[0].main][1],
+                condition: capitalized,
+                conditionPic: `http://openweathermap.org/img/wn/${info.data.weather[0].icon}@2x.png`
+            }
+            res.send(infoSorted)
+        } catch(err) {
+            res.send(err)
+        }
+    } else {
+        try {
+            let info = await getCityData(req.params.cityName)
+            res.send(info)
+        } catch(err) {
+            res.send(err)
+        }
     }
-    
 })
 
 router.get('/cities', async function(req, res) {

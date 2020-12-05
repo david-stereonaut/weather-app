@@ -4,15 +4,9 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-/* #container {
-    display: grid;
-    grid-template-rows: 2fr 1fr;
-} */
-
 #searchbar {
     display: flex;
     background-color: #4ecdc4;
-    /* height: 5vh; */
     align-items: center;
     justify-content: center;
     margin: 0;
@@ -74,12 +68,6 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 40px;
 }
-
-/* #results {
-    display: grid;
-    grid-template-columns: 1fr;
-
-} */
 
 .result {
     display: grid;
@@ -148,19 +136,12 @@ body {
     #results {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        /* gap: 10px; */
         grid-auto-rows: 100px;
     }
 
     .result:hover {
         cursor: pointer;
     }
-    
-    /* .result:active {
-        height: 9.5vh;
-        width: 95%;
-        justify-self: center; 
-    } */
 
     .res-button {
         padding: 0.5vw;
@@ -179,8 +160,4 @@ body {
         padding: 25px;
     }
 
-    /* .result:active {
-        justify-self: center; 
-        align-self: center;
-    } */
 }
